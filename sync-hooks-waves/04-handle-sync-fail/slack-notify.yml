@@ -35,7 +35,7 @@ spec:
           args:
             - "-X"
             - "POST"
-            - "https://discord.com/api/webhooks/1113186329254178857/OTAYpZFUkuPQ7_fjCDjG7tsczumanWju-EA7CtFrtpRLc5qK1XJ7KUECixZ_tAj7kvt5"
+            - "COLOQUE O WEBHOOK DO DISCORD AQUI"
             - "-H"
             - "Content-Type: application/json"
             - "-d"

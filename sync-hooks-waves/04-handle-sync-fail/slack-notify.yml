@@ -16,3 +16,33 @@ spec:
           - "3"
       restartPolicy: Never
   backoffLimit: 2    
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: discord-webhook-job
+  namespace: example04
+  annotations:
+    argocd.argoproj.io/hook: SyncFail
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: curl
+          image: curlimages/curl:latest
+          command: ["curl"]
+          args:
+            - "-X"
+            - "POST"
+            - "https://discord.com/api/webhooks/1113186329254178857/OTAYpZFUkuPQ7_fjCDjG7tsczumanWju-EA7CtFrtpRLc5qK1XJ7KUECixZ_tAj7kvt5"
+            - "-H"
+            - "Content-Type: application/json"
+            - "-d"
+            - '{"content": "Olá, Discord! Essa é uma mensagem de teste do ArgoCD."}'
+      # imagePullSecrets:
+        # Caso necessário, adicione seus segredos para acessar o registro de contêineres.
+        # - name: regcred
+      # O tempo limite em segundos para o Job (opcional).
+      # timeoutSeconds: 600
+  backoffLimit: 0
